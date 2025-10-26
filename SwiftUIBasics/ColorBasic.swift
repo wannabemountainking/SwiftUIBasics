@@ -38,9 +38,11 @@ struct ColorBasic: View {
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color("CustomColor"))
                 .frame(width: 300, height: 100)
+
         }
     }
 }
+
 
 #Preview {
     ColorBasic()
