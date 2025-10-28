@@ -10,13 +10,24 @@ import SwiftUI
 struct LazyGridBasic1: View {
     // LazyVGrid
     // Columns 의 갯수를 3개로 설정
+    var gridWidth: CGFloat
+    let spacing: CGFloat = 6
     let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 6, alignment: nil),
         GridItem(.flexible(), spacing: 6, alignment: nil),
         GridItem(.flexible(), spacing: 6, alignment: nil),
         GridItem(.flexible(), spacing: 6, alignment: nil)
     ]
     
+    init(gridWidth: CGFloat = 150) {
+        let wholeWidth = UIScreen.main.bounds.size.width
+        let intervals = CGFloat(columns.count - 1) * spacing
+        self.gridWidth = (wholeWidth - intervals) / CGFloat(columns.count)
+        print(wholeWidth, intervals, self.gridWidth)
+    }
+    
     var body: some View {
+        
         // 1. LazyGrid
         ScrollView {
             // Hero 부분
@@ -27,7 +38,7 @@ struct LazyGridBasic1: View {
             // header를 포함한 LazyVGrid
             LazyVGrid(columns: columns,
                       alignment: .center,
-                      spacing: 6,
+                      spacing: spacing,
                       pinnedViews: [.sectionHeaders]
             ) {
                 // Section1
@@ -35,7 +46,7 @@ struct LazyGridBasic1: View {
                     ForEach(0 ..< 20) { index in
                         Rectangle()
                             .fill(Color.gray)
-                            .frame(height: 150)
+                            .frame(height: gridWidth)
                             .overlay(
                                 Text("\(index) 번")
                             )
@@ -54,7 +65,7 @@ struct LazyGridBasic1: View {
                     ForEach(0 ..< 20) { index in
                         Rectangle()
                             .fill(Color.green)
-                            .frame(height: 150)
+                            .frame(height: gridWidth)
                             .overlay(
                                 Text("\(index) 번")
                             )
