@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct LazyGridBasic1: View {
+    var body: some View {
+        GeometryReader { geo in
+            LazyGridBasic1_1(width: geo.size.width)
+        }
+    }
+}
+
+struct LazyGridBasic1_1: View {
     // LazyVGrid
     // Columns 의 갯수를 3개로 설정
-    var gridWidth: CGFloat
+    let width: CGFloat
+    let gridWidth: CGFloat
     let spacing: CGFloat = 6
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 6, alignment: nil),
@@ -19,11 +28,10 @@ struct LazyGridBasic1: View {
         GridItem(.flexible(), spacing: 6, alignment: nil)
     ]
     
-    init(gridWidth: CGFloat = 150) {
-        let wholeWidth = UIScreen.main.bounds.size.width
-        let intervals = CGFloat(columns.count - 1) * spacing
-        self.gridWidth = (wholeWidth - intervals) / CGFloat(columns.count)
-        print(wholeWidth, intervals, self.gridWidth)
+    init(width: CGFloat) {
+        self.width = width
+        let numOfColumns = CGFloat(columns.count)
+        self.gridWidth = (width - spacing * (numOfColumns - 1)) / numOfColumns
     }
     
     var body: some View {
