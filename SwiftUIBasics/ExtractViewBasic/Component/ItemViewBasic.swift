@@ -26,6 +26,6 @@ struct ItemViewBasic: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     ItemViewBasic(title: "사과", count: 1, color: .red)
 }

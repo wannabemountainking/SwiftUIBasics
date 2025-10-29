@@ -9,7 +9,22 @@ import SwiftUI
 
 struct ExtractSubViewBasic: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            //background
+            Color.cyan
+                .ignoresSafeArea()
+            
+            //content
+            contentLayer
+        }
+    }
+    
+    var contentLayer: some View {
+        HStack {
+            ItemViewBasic(title: "오렌지", count: 2, color: .orange)
+            ItemViewBasic(title: "바나나", count: 5, color: .yellow)
+            ItemViewBasic(title: "풋고추", count: 10, color: .blue)
+        }
     }
 }
 
