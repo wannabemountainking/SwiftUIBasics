@@ -18,11 +18,13 @@ struct AnimationBasic2: View {
             Button {
                 isAnimated.toggle()
             } label: {
-                Text("Button")
+                Text("Animate All")
             }
+            .buttonStyle(.borderedProminent)
             
             // linear animation: 처음부터 끝까지 속도가 일정
             RoundedRectangle(cornerRadius: 25)
+                .fill(.red)
                 .frame(
                     width: isAnimated ? 350 : 50,
                     height: 100
@@ -34,6 +36,7 @@ struct AnimationBasic2: View {
             
             // easeIn animation: 처음에 느렸다가 끝에 빨라지는 효과 -> 들어갈때 천천히(easyIn)
             RoundedRectangle(cornerRadius: 25)
+                .fill(.teal)
                 .frame(
                     width: isAnimated ? 350 : 50,
                     height: 100
@@ -45,6 +48,7 @@ struct AnimationBasic2: View {
             
             // easeOut animation: 처음엔 빨랐다가 끝에 느려지는 효과 -> 나갈때 천천히 (easyOut)
             RoundedRectangle(cornerRadius: 25)
+                .fill(.orange)
                 .frame(
                     width: isAnimated ? 350 : 50,
                     height: 100
@@ -56,6 +60,7 @@ struct AnimationBasic2: View {
             
             // easeInOut animation: 처음과 끝에 느렸다가 중간부분이 빨라지는 효과 -> 나갈 때와 들어갈 때 천천히
             RoundedRectangle(cornerRadius: 25)
+                .fill(.purple)
                 .frame(
                     width: isAnimated ? 350 : 50,
                     height: 100
