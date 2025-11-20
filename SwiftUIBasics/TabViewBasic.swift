@@ -13,13 +13,13 @@ struct TabViewBasic: View {
     var body: some View {
         // section: TabView가 어디 페이지(화면)를 가리키는 지 설정하는 것
         TabView(selection: $initPageNumber) {
-            Tab("Home", systemImage: "house.fill", value: initPageNumber) {
+            Tab("Home", systemImage: "house.fill", value: 0) {
                 HomeView(selectedTab: $initPageNumber)
             }
-            Tab("Browse", systemImage: "globe", value: initPageNumber) {
+            Tab("Browse", systemImage: "globe", value: 1) {
                 Text("둘러보기 화면")
             }
-            Tab("Profile", systemImage: "person.fill", value: initPageNumber) {
+            Tab("Profile", systemImage: "person.fill", value: 2) {
                 Text("프로필 화면")
                 Image(systemName: "photo")
             }
