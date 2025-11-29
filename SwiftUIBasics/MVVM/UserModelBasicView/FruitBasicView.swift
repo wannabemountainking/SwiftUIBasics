@@ -36,18 +36,24 @@ struct FruitBasicView: View {
 //            }
             .navigationTitle("과일 리스트")
             .navigationBarTitleDisplayMode(.inline)
+//            MARK: onAppear를 사용하면 계속 getFruit를 불러와서 쌓이게 됨. 따라서 onAppear를 쓰지 말고 ViewModel이 생성될 때 한 번 getFruit()를 호출하면 1번만 받아옴으로써 문제가 없게 된다
+//            .onAppear(perform: {
+//                Task {
+//                    await fruitVM.getFruit()
+//                }
+//            })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
                         //destination
-                        FruitScreen()
+                        FruitScreen(fruitVM: fruitVM)
                     } label: {
                         Image(systemName: "arrow.forward")
                             .font(.title)
-                    }
+                    }//: navigationLink
 
-                }
-            }
+                }//: toobarItem
+            }//: toolbar
         }// : Navigation
     }
 }

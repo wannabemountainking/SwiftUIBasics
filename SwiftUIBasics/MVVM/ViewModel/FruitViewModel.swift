@@ -17,13 +17,15 @@ class FruitViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     //init
-    init() {
-        getFruit()
+    init()  {
+        Task {
+            await getFruit()
+        }
     }
     
     //function
     // getFruit() : fruitArray를 생성함
-    func getFruit() {
+    func getFruit() async {
         // fruit 의 각각의 값 선언
         let fruit1 = FruitModel(name: "딸기", count: 1)
         let fruit2 = FruitModel(name: "사과", count: 3)
@@ -31,7 +33,15 @@ class FruitViewModel: ObservableObject {
         
         // 3초 딜레이 후, fruitArray에 선언된 값을 집어넣게
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            for fruit in [fruit1, fruit2, fruit3] {
+//                self.fruitArray.append(fruit)
+//            }
+//            self.isLoading = false
+//        }
+        try? await Task.sleep(for: .seconds(3))
+        
+        await MainActor.run {
             for fruit in [fruit1, fruit2, fruit3] {
                 self.fruitArray.append(fruit)
             }

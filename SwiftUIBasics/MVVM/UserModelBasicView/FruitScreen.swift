@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FruitScreen: View {
-    @ObservedObject var fruitVM = FruitViewModel()
+    @ObservedObject var fruitVM: FruitViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -37,5 +37,5 @@ struct FruitScreen: View {
 }
 
 #Preview {
-    FruitScreen()
+    FruitScreen(fruitVM: FruitViewModel())
 }
